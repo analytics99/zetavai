@@ -6,7 +6,6 @@
 //
 // Environment variables (Vercel > Project > Settings > Environment Variables):
 //   APPS_SCRIPT_URL  The "Web app" URL of the deployed Apps Script (ends in /exec)
-//   FORM_SECRET      A long random string, identical to FORM_SECRET in the Apps Script properties
 
 const BUSINESS_TYPES = ['Manufacturing or MSME', 'Professional or small business', 'Other'];
 const MIN_FILL_MS = 2500; // a person needs longer than this to fill in the form
@@ -82,9 +81,8 @@ module.exports = async function handler(req, res) {
   if (errors.length) return respond(false, 422, 'invalid:' + errors.join(','));
 
   const url = process.env.APPS_SCRIPT_URL;
-  const secret = process.env.FORM_SECRET;
-  if (!url || !secret) {
-    console.error('[contact] APPS_SCRIPT_URL or FORM_SECRET is not set');
+  if (!url) {
+    console.error('[contact] APPS_SCRIPT_URL is not set');
     return respond(false, 500, 'not_configured');
   }
 
@@ -92,7 +90,7 @@ module.exports = async function handler(req, res) {
     const response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(Object.assign({ secret }, lead)),
+      body: JSON.stringify(lead),
       redirect: 'follow',
       signal: AbortSignal.timeout(10000),
     });

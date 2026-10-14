@@ -3,7 +3,7 @@
 //
 //   node dev-server.js          then open http://localhost:3000
 //
-// The form needs APPS_SCRIPT_URL and FORM_SECRET. Put them in a .env file
+// The form needs APPS_SCRIPT_URL. Put it in a .env file
 // (copy .env.example) to send test requests to your real Google Sheet.
 // This file is only for previewing; Vercel does not use it.
 

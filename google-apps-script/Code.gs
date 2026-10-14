@@ -4,11 +4,7 @@
  * Setup (once):
  * 1. Create a Google Sheet, for example "Zetavai website leads".
  * 2. In the Sheet: Extensions > Apps Script. Replace the code with this file. Save.
- * 3. Project Settings (gear icon):
- *    - Time zone: (GMT+05:30) India Standard Time
- *    - Script properties > Add:
- *        FORM_SECRET   = the same long random string you put in Vercel
- *        NOTIFY_EMAIL  = zetavaiofficial@gmail.com   (optional; leave out to disable emails)
+ * 3. Project Settings (gear icon): set Time zone to (GMT+05:30) India Standard Time.
  * 4. Deploy > New deployment > type "Web app":
  *        Execute as: Me
  *        Who has access: Anyone
@@ -18,6 +14,7 @@
  */
 
 const SHEET_NAME = 'Leads';
+const NOTIFY_EMAIL = 'zetavaiofficial@gmail.com'; // set to '' to turn off email alerts
 
 const COLUMNS = [
   ['submitted_at', 'Received'],
@@ -38,17 +35,14 @@ const COLUMNS = [
 ];
 
 function doPost(e) {
-  const props = PropertiesService.getScriptProperties();
-  const secret = props.getProperty('FORM_SECRET');
-
   let data;
   try {
     data = JSON.parse(e.postData.contents);
   } catch (err) {
     return json_({ ok: false, error: 'bad_json' });
   }
-  if (!secret || data.secret !== secret) {
-    return json_({ ok: false, error: 'unauthorized' });
+  if (!data || !data.email || !data.name) {
+    return json_({ ok: false, error: 'missing_fields' });
   }
 
   const lock = LockService.getScriptLock();
@@ -65,11 +59,10 @@ function doPost(e) {
     lock.releaseLock();
   }
 
-  const notify = props.getProperty('NOTIFY_EMAIL');
-  if (notify) {
+  if (NOTIFY_EMAIL) {
     try {
       MailApp.sendEmail({
-        to: notify,
+        to: NOTIFY_EMAIL,
         replyTo: data.email,
         subject: 'New consultation request: ' + data.name + (data.company ? ' (' + data.company + ')' : ''),
         body: [

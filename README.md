@@ -35,7 +35,7 @@ Requires Node.js 18 or newer. No installs.
 ```bash
 node dev-server.js        # open http://localhost:3000
 ```
-To test the form against your real Google Sheet, copy `.env.example` to `.env` and fill in both values first.
+To test the form against your real Google Sheet, copy `.env.example` to `.env` and set the value first.
 
 ---
 
@@ -59,9 +59,7 @@ git push -u origin main
 2. **Extensions > Apps Script**: delete the sample code, paste in `google-apps-script/Code.gs`, click **Save**.
 3. **Project Settings** (gear icon):
    - **Time zone**: *(GMT+05:30) India Standard Time*
-   - **Script properties**:
-     - `FORM_SECRET`: a long random password (30+ characters). Vercel needs the same value.
-     - `NOTIFY_EMAIL`: `zetavaiofficial@gmail.com`
+   - The notification email is set at the top of `Code.gs` (`NOTIFY_EMAIL`); no script properties are needed.
 4. **Deploy > New deployment**, type **Web app**: Execute as **Me**, Who has access **Anyone**.
 5. Click **Deploy**, allow the permissions, and copy the **Web app URL** (ends in `/exec`).
 
@@ -71,8 +69,7 @@ A **Leads** tab with headers is created on the first request.
 1. **Add New > Project**, import the GitHub repository.
 2. Framework preset: **Other**. Build command: leave empty. Output directory: `public` (already set in `vercel.json`).
 3. **Environment Variables**:
-   - `APPS_SCRIPT_URL`: the Web app URL from step 2
-   - `FORM_SECRET`: the same value as in the Apps Script
+   - `APPS_SCRIPT_URL`: the Web app URL from step 2 (the only variable)
 4. **Deploy**. Test the form on the `.vercel.app` preview address: a row should appear in the sheet and an email should arrive.
 
 ### 4. Turn on analytics
@@ -132,7 +129,7 @@ See "Switching from the current live site" below first. Then in **Settings > Dom
    - silently drops spam: a hidden field bots fill in, and submissions faster than a person could type
    - validates name, email, mobile number and consent
    - records where the visitor came from: first page, referrer, `utm_` tags, country
-   - forwards the request to the Apps Script with the shared `FORM_SECRET`
+   - forwards the request to the Apps Script (the unguessable Web app URL, kept in a Vercel environment variable)
 3. The Apps Script adds a row to **Leads** and emails `NOTIFY_EMAIL`. Values starting with `=`, `+`, `-` or `@` are stored as text, so +91 numbers stay intact and spreadsheet formulas can't be injected.
 4. The visitor lands on `/thank-you`. Vercel Analytics records the custom event **Consultation requested** (custom events may need a paid Vercel plan; thank-you page views count on every plan).
 

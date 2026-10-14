@@ -10,7 +10,7 @@ Plain HTML website for www.zetavai.com, hosted on Vercel. No build step and no f
   - `assets/js/site.js`: menu, mobile collapsible sections, visit attribution. Loaded on every page.
   - `assets/js/contact.js`: form validation and sending. Loaded only on `contact.html`.
   - `sitemap.xml`, `robots.txt`, `llms.txt`: search engines and AI assistants.
-- `api/contact.js`: Vercel serverless function behind the form. Forwards to Google Apps Script using env vars `APPS_SCRIPT_URL` and `FORM_SECRET`.
+- `api/contact.js`: Vercel serverless function behind the form. Forwards to Google Apps Script using the env var `APPS_SCRIPT_URL` (no shared secret).
 - `google-apps-script/Code.gs`: the script attached to the leads Google Sheet. Not deployed by Vercel.
 - `dev-server.js`: local preview with `node dev-server.js` (http://localhost:3000). Not used by Vercel.
 
