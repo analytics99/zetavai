@@ -31,7 +31,7 @@ Ways to start: a fixed-fee diagnostic ending in a roadmap, a defined project, or
 ## Team
 - Pranav Jaju, Co-founder and CEO: business strategy, technology consulting and AI implementation; industrial engineer specialising in process design and lean workflows
 - Pravin Jaju, Co-founder and CTO: AI, data engineering and systems integration; unstructured data
-- Jay Jaju, Marketing and sales operations: social media growth, brand design and marketing
+- Jay Jaju, Business Development: social media growth, brand design and marketing
 
 ## Key pages
 - [Home](https://www.zetavai.com/)
