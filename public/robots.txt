@@ -1,0 +1,17 @@
+# Zetavai — https://www.zetavai.com
+# Search engines, AI assistants and answer engines are welcome to read and cite this site.
+
+User-agent: *
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: PerplexityBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /api/
+Disallow: /thank-you
+
+Sitemap: https://www.zetavai.com/sitemap.xml

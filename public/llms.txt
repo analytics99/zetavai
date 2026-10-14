@@ -1,0 +1,46 @@
+# Zetavai
+
+> Zetavai is a technology consulting and implementation partner based in Pune, India. It combines strategy, consulting and implementation in one team, and designs and builds connected digital tools ("digital ecosystems") that save time and help SMEs, MSMEs, manufacturers and professionals grow.
+
+Core message: Your trusted digital partner. Strategy + Consulting + Implementation. Save your time. Grow your business.
+
+## What Zetavai builds
+Every ecosystem has three layers on a connecting base:
+- Digital presence: websites (static or dynamic), mobile-ready tools, product catalogues, online sales channels, social media content and growth
+- Business tools: custom tools that replace spreadsheets, shop-floor and inventory tools, enquiry and form management, booking and calendar management, quote generators, personalised client plans
+- Data and insight: process analysis of inventory and production data, dashboards, AI on a business's own data
+- Integrations: connecting new tools to existing ERP, accounting software, spreadsheets, calendar and email
+
+## Who it is for
+- [Manufacturers and MSMEs](https://www.zetavai.com/services/manufacturing): move operations out of Excel, custom shop-floor tools, production and inventory insight, ERP bridges, industrial catalogues and websites
+- [Professionals and small businesses](https://www.zetavai.com/services/professionals): professional websites plus the tools behind them, such as bookings, enquiries, quotes and client plans
+
+## Recent work
+- Fitness trainer: website plus client plan generator
+- Decor artist (ongoing): product catalogue, website and online sales launch
+- Financial planner: website plus booking calendar tool
+
+## How projects work
+1. Understand: a complimentary 30-minute consultation and a look at how work flows today
+2. Plan: scope, deliverables, timeline and price agreed in writing
+3. Implement: short cycles with early, working results
+4. Improve: measure before and after, train the team, add the next connected tool
+
+Ways to start: a fixed-fee diagnostic ending in a roadmap, a defined project, or an ongoing partnership.
+
+## Team
+- Pranav Jaju, Co-founder and CEO: business strategy, technology consulting and AI implementation; industrial engineer specialising in process design and lean workflows
+- Pravin Jaju, Co-founder and CTO: AI, data engineering and systems integration; unstructured data
+- Jay Jaju, Marketing and sales operations: social media growth, brand design and marketing
+
+## Key pages
+- [Home](https://www.zetavai.com/)
+- [Services](https://www.zetavai.com/services)
+- [Approach](https://www.zetavai.com/approach)
+- [About](https://www.zetavai.com/about)
+- [FAQ](https://www.zetavai.com/faq)
+- [Book a consultation](https://www.zetavai.com/contact)
+
+## Contact
+Email: zetavaiofficial@gmail.com
+Location: Pune, India

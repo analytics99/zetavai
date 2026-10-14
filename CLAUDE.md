@@ -1,43 +1,26 @@
-# CLAUDE.md — Frontend Website Rules
+# Zetavai website: notes for Claude Code
 
-## Always Do First
-- **Invoke the `frontend-design` skill** before writing any frontend code, every session, no exceptions.
+Plain HTML website for www.zetavai.com, hosted on Vercel. No build step and no framework.
 
-## Reference Images
-- If a reference image is provided: match layout, spacing, typography, and color exactly. Swap in placeholder content (images via `https://placehold.co/`, generic copy). Do not improve or add to the design.
-- If no reference image: design from scratch with high craft (see guardrails below).
+## Structure
+- `public/` is the website. Every file in it is published as-is.
+  - One HTML file per page: `index.html`, `services.html`, `services/manufacturing.html`, `services/professionals.html`, `approach.html`, `about.html`, `contact.html`, `faq.html`, `privacy.html`, `thank-you.html`, `404.html`.
+  - URLs have no `.html` and no trailing slash (`/about`, not `/about.html`), set by `cleanUrls` and `trailingSlash` in `vercel.json`. Always link to the clean URL.
+  - `assets/css/styles.css`: the only stylesheet. Colours and sizes are CSS variables in `:root`.
+  - `assets/js/site.js`: menu, mobile collapsible sections, visit attribution. Loaded on every page.
+  - `assets/js/contact.js`: form validation and sending. Loaded only on `contact.html`.
+  - `sitemap.xml`, `robots.txt`, `llms.txt`: search engines and AI assistants.
+- `api/contact.js`: Vercel serverless function behind the form. Forwards to Google Apps Script using env vars `APPS_SCRIPT_URL` and `FORM_SECRET`.
+- `google-apps-script/Code.gs`: the script attached to the leads Google Sheet. Not deployed by Vercel.
+- `dev-server.js`: local preview with `node dev-server.js` (http://localhost:3000). Not used by Vercel.
 
-## Local Server
-- **Always serve on localhost** — never screenshot a `file:///` URL.
-- Start the dev server: `node serve.mjs` (serves the project root at `http://localhost:3000`)
-- `serve.mjs` lives in the project root. Start it in the background before taking any screenshots.
-- If the server is already running, do not start a second instance.
-
-
-## Output Defaults
-- Single `index.html` file, all styles inline, unless user says otherwise
-- Tailwind CSS via CDN: `<script src="https://cdn.tailwindcss.com"></script>`
-- Placeholder images: `https://placehold.co/WIDTHxHEIGHT`
-- Mobile-first responsive
-
-## Brand Assets
-- Always check the `brand_assets/` folder before designing. It may contain logos, color guides, style guides, or images.
-- If assets exist there, use them. Do not use placeholders where real assets are available.
-- If a logo is present, use it. If a color palette is defined, use those exact values — do not invent brand colors.
-
-## Anti-Generic Guardrails
-- **Colors:** Never use default Tailwind palette (indigo-500, blue-600, etc.). Pick a custom brand color and derive from it.
-- **Shadows:** Never use flat `shadow-md`. Use layered, color-tinted shadows with low opacity.
-- **Typography:** Never use the same font for headings and body. Pair a display/serif with a clean sans. Apply tight tracking (`-0.03em`) on large headings, generous line-height (`1.7`) on body.
-- **Gradients:** Layer multiple radial gradients. Add grain/texture via SVG noise filter for depth.
-- **Animations:** Only animate `transform` and `opacity`. Never `transition-all`. Use spring-style easing.
-- **Interactive states:** Every clickable element needs hover, focus-visible, and active states. No exceptions.
-- **Images:** Add a gradient overlay (`bg-gradient-to-t from-black/60`) and a color treatment layer with `mix-blend-multiply`.
-- **Spacing:** Use intentional, consistent spacing tokens — not random Tailwind steps.
-- **Depth:** Surfaces should have a layering system (base → elevated → floating), not all sit at the same z-plane.
-
-## Hard Rules
-- Do not add sections, features, or content not in the reference
-- Do not "improve" a reference design — match it
-- Do not use `transition-all`
-- Do not use default Tailwind blue/indigo as primary color
+## Rules when editing
+- The header (`<header class="site-header">`) and footer (`<footer class="site-footer">`) are repeated in every HTML file. A change to either must be made in all 11 files.
+- Contact email (`zetavaiofficial@gmail.com`) appears in pages, `llms.txt`, the JSON-LD blocks and `google-apps-script/Code.gs`. Search and replace across the repo.
+- Each page has in `<head>`: `<title>` (≤ 60 characters), `<meta name="description">` (≤ 160 characters), `canonical`, Open Graph and Twitter tags, and a JSON-LD block. Keep them in sync when changing page content.
+- FAQ answers exist twice per page: visible in the `.faq` HTML and in the `FAQPage` JSON-LD. Change both.
+- New page: copy an existing page, update the head tags, add it to `sitemap.xml`, link it from the footer or menu, and add it to `llms.txt`.
+- Change `<lastmod>` in `sitemap.xml` when a page's content changes.
+- Main call to action wording is "Book a consultation" and links to `/contact`. The form button is "Request consultation".
+- Style: black, white and greys only; Albert Sans (self-hosted); light-weight headlines; no emoji or icon fonts; mobile-friendly first.
+- Never put secrets in `public/`. Secrets live only in Vercel environment variables and Apps Script properties.
