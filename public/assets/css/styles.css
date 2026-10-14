@@ -243,19 +243,22 @@ ol {
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 15px;
   text-decoration: none;
   color: var(--white);
   flex-shrink: 0;
 }
 .brand img {
+  display: block;
   height: 22px;
   width: auto;
 }
 .brand span {
+  display: block;
   font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.02em;
+  line-height: 1;
 }
 .nav {
   display: flex;
@@ -928,6 +931,7 @@ details.fold > summary::-webkit-details-marker {
 .breadcrumb ol {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 6px;
   font-size: 14.5px;
   color: var(--muted);
@@ -950,6 +954,8 @@ details.fold > summary::-webkit-details-marker {
 }
 .breadcrumb [aria-current] {
   color: var(--ink);
+  display: inline-block;
+  padding: 6px 0;
 }
 
 /* service layers */
